@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Tasks — Task Manager</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark nav-gradient">
+  <div class="container">
+    <a class="navbar-brand fw-bold" href="#">TaskManager</a>
+    <div class="d-flex align-items-center gap-3">
+      <div class="text-white small">Signed in as <span id="userDisplay" class="fw-semibold"></span></div>
+      <button id="logoutBtn" class="btn btn-outline-light btn-sm">Logout</button>
+    </div>
+  </div>
+</nav>
+
+<main class="container my-4">
+  <div id="alert-area"></div>
+
+  <div class="row gy-3">
+    <div class="col-lg-4">
+      <div class="card shadow-sm p-3 mb-3">
+        <h5 class="mb-3">Add / Edit Task</h5>
+        <form id="taskForm">
+          <input type="hidden" id="editIndex" />
+          <div class="mb-2">
+            <label class="form-label">Title</label>
+            <input id="taskTitle" class="form-control" required />
+          </div>
+          <div class="mb-2">
+            <label class="form-label">Description</label>
+            <textarea id="taskDesc" class="form-control" rows="3"></textarea>
+          </div>
+          <div class="mb-2 row">
+            <div class="col-6">
+              <label class="form-label">Deadline</label>
+              <input id="taskDeadline" type="date" class="form-control" required />
+            </div>
+            <div class="col-6">
+              <label class="form-label">Category</label>
+              <select id="taskCategory" class="form-select" required>
+                <option value="work">Work</option>
+                <option value="personal">Personal</option>
+                <option value="urgent">Urgent</option>
+              </select>
+            </div>
+          </div>
+          <div class="d-flex gap-2">
+            <button type="submit" class="btn btn-success" id="saveBtn">Save Task</button>
+            <button type="button" class="btn btn-outline-secondary" id="resetBtn">Reset</button>
+          </div>
+        </form>
+      </div>
+
+      <div class="card shadow-sm p-3">
+        <h6 class="mb-2">Controls</h6>
+        <div class="mb-2">
+          <label class="form-label small">Filter</label>
+          <select id="filterCategory" class="form-select">
+            <option value="all">All</option>
+            <option value="work">Work</option>
+            <option value="personal">Personal</option>
+            <option value="urgent">Urgent</option>
+          </select>
+        </div>
+        <div class="mb-2">
+          <label class="form-label small">Sort by</label>
+          <select id="sortBy" class="form-select">
+            <option value="deadline_asc">Deadline (soonest)</option>
+            <option value="deadline_desc">Deadline (latest)</option>
+            <option value="created_desc">Newest</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-8">
+      <div id="tasksContainer" class="row row-cols-1 row-cols-md-2 g-3"></div>
+    </div>
+  </div>
+</main>
+
+<!-- Edit Modal (also accessible from edit button) -->
+<div class="modal fade" id="editModal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <form id="modalEditForm">
+        <div class="modal-header">
+          <h5 class="modal-title">Edit Task</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-2">
+            <label class="form-label">Title</label>
+            <input id="modalTitle" class="form-control" required />
+          </div>
+          <div class="mb-2">
+            <label class="form-label">Description</label>
+            <textarea id="modalDesc" class="form-control" rows="3"></textarea>
+          </div>
+          <div class="mb-2 row">
+            <div class="col-6">
+              <label class="form-label">Deadline</label>
+              <input id="modalDeadline" type="date" class="form-control" required />
+            </div>
+            <div class="col-6">
+              <label class="form-label">Category</label>
+              <select id="modalCategory" class="form-select" required>
+                <option value="work">Work</option>
+                <option value="personal">Personal</option>
+                <option value="urgent">Urgent</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" data-bs-dismiss="modal" type="button">Cancel</button>
+          <button class="btn btn-primary" type="submit">Save changes</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>

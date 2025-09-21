@@ -1,0 +1,16 @@
+:root{
+  --primary:#4f46e5;
+  --accent:#06b6d4;
+}
+body.bg-gradient{
+  background: linear-gradient(135deg,#f8fafc 0%, #eef2ff 35%, #fff 100%);
+  min-height:100vh;
+}
+.auth-card{ width: 360px; border-radius: 12px; }
+.nav-gradient{ background: linear-gradient(90deg,#46e586,#d4069d); }
+.task-card { border-left:6px solid var(--primary); border-radius:8px; }
+.task-card .badge { text-transform:capitalize; }
+.task-card.completed { background:#e9fbe9; border-left-color:#198754; text-decoration:line-through; opacity:0.9;}
+.overdue { color:#c92a2a; font-weight:600; }
+.due-today { color:#b45309; font-weight:600; }
+.small-muted { font-size:0.85rem; color:#6b7280; }
